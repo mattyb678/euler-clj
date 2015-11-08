@@ -49,4 +49,16 @@
 (defn problem5 []
   (reduce lcm (range 1 21)))
 
+(def rng (range 1 101))
+
+(defn- sum-squares [lst]
+  (reduce + (map #(* % %) lst)))
+
+(defn- square-sum [lst]
+  (let [x (reduce + lst)]
+    (* x x)))
+
+(defn problem6 []
+  (- (square-sum rng) (sum-squares rng)))
+
 
