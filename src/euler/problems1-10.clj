@@ -1,4 +1,5 @@
-(ns euler.problems1-10)
+(ns euler.problems1-10
+  (require [clojure.string :as s]))
 
 
 (defn problem1 [] 
@@ -28,3 +29,12 @@
 
 (defn problem3 []
   (apply max (factors 600851475143)))
+
+(defn- isPalindrome? [num]
+  (= (str num) (s/reverse (str num))))
+
+(defn problem4 []
+  (->> (for [i (range 100 1000) j (range 100 1000)] (* i j))
+       (filter isPalindrome?)
+       (apply max)))
+
