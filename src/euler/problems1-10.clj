@@ -16,3 +16,15 @@
 
 (defn problem2 []
   (fib 4000000))
+
+(defn- factors
+  ([num]
+   (factors num 2 '()))
+  ([num toCheck lst]
+   (cond
+    (> toCheck num) lst
+    (= 0 (mod num toCheck)) (recur (/ num toCheck) toCheck (cons toCheck lst))
+    :else (recur num (inc toCheck) lst))))
+
+(defn problem3 []
+  (apply max (factors 600851475143)))
