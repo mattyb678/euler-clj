@@ -61,4 +61,18 @@
 (defn problem6 []
   (- (square-sum rng) (sum-squares rng)))
 
+(defn- is-prime? [num]
+  (cond
+      (< num 2) false
+      (= 0 (mod num 2)) (= 2 num)
+      :else (loop [root (Math/sqrt num) x 3]
+              (cond
+               (> x root) true
+               (= 0 (mod num x)) false
+               :else (recur root (+ 2 x))))))
 
+(defn problem7 []
+  (->> (iterate inc 1)
+       (filter is-prime?)
+       (drop 10000)
+       (first)))
