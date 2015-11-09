@@ -92,3 +92,21 @@
                :when (= (* c c) (+ (* a a) (* b b)))]
            (* a b c))))
 
+(defn problem10 []
+  (->> (range 1 2000001)
+       (filter #(is-prime? %))
+       (reduce +)))
+
+(defn- gen-primes []
+  (letfn [(reinsert [x table prime]
+            (update-in table [(+ x prime)] conj prime))
+          (sieve [x table]
+            (if-let [factors (get table x)]
+              (recur (inc x) (reduce #(reinsert x %1 %2) (dissoc table x) factors))
+              (lazy-seq (cons x (sieve (inc x) (assoc table (* x x) (list x)))))))]
+    (sieve 2 {})))
+
+(defn problem10 []
+  (->> (gen-primes)
+       (filter #(< % 2000000))
+       (reduce +)))
