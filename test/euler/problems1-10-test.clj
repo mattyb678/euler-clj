@@ -29,3 +29,11 @@
 (deftest problem7-test
   (testing "Problem 7"
     (is (= 104743 (problem7)))))
+
+(deftest problem8-test
+  (testing "Problem 8"
+    (is (= 23514624000 (problem8)))))
+
+(deftest problem9-test
+  (testing "Problem 9"
+    (is (= 31875000 (problem9)))))
